@@ -13,3 +13,7 @@ input, i{
 .line{
     text-decoration: line-through;
 }
+
+.hide{
+    display: none;
+}

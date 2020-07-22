@@ -38,12 +38,7 @@ export class TodoComponent implements OnInit {
     this.title = ' ';
     this.date=' ';
     this.todoList=[
-      {
-        'id':1,
-        'title':"Call",
-        'checked':false,
-        'date':""
-      },
+      
      ]
 
   }
@@ -66,12 +61,12 @@ export class TodoComponent implements OnInit {
     this.idTodo++;
   }
 
-  addDate(date){
+  addDate(date):void{
    if(this.title.trim().length === 0){
       return;
    }
-    return this.todoList.push(...this.todoList,date)
-    
+    this.todoList.push(...this.todoList,date)
+    console.log(date)
   }
  
   // All completed items delete

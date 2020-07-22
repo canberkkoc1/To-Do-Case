@@ -9,9 +9,9 @@
   <div class="input-group-append">
     <span class="input-group-text" id="basic-addon2" (click)="addTodo()"><i class="fa fa-plus-square"></i></span>
   </div>
-  <div >
+  <!-- <div >
     <input style="margin-top: 5px;"  type="date" [(ngModel)]="date" (keyup.enter)="addDate(date)">
-  </div >
+  </div > -->
 
 
 
@@ -28,9 +28,11 @@
   <ul class="list-group" style="width: 90%;">
     <li class="list-group-item" [ngClass]="item.checked ? 'line' : null">
       {{item.title}} <br> <span>DeadLine: {{item.date}} </span>
-
+      
       <button type="button" class="btn btn-danger pull-right" (click)="removeTodo(item.id)"><i
-          class="fa fa-trash"></i></button>
+        class="fa fa-trash"></i></button>
+        <input [ngClass]="item.date !== ' ' ? 'hide' : null" style="margin-top: 5px;"  type="date" 
+        [(ngModel)]="item.date" (keyup.enter)="addDate(date)">
     </li>
   </ul>
 
@@ -56,5 +58,5 @@
 
 <div *ngIf="completedTodo()">
 
-  <button type="button" class="btn btn-outline-dark" (click)="completedDelete()">Clear Completed</button>
+  <button style="margin-bottom: 20px;" type="button" class="btn btn-outline-dark" (click)="completedDelete()">Clear Completed</button>
 </div>
