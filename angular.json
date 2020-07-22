@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "todoFrn"
+    }
+  },
+  "defaultProject": "todoFrn",
+  "cli": {
+    "analytics": "d0ef22ee-8866-4cd4-b404-b00be9079a10"
+  }
 }

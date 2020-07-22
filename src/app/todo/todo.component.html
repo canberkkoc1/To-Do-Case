@@ -1,0 +1,60 @@
+<div class="jumbotron" style="padding: 20px 0;">
+  <h1 class="text-center">To Do App</h1>
+</div>
+
+
+<div class="input-group" style="padding-bottom: 15px;">
+  <input style="width: 90%;" type="text" class="todo-input" placeholder="Please enter the task" [(ngModel)]="title"
+    (keyup.enter)="addTodo()">
+  <div class="input-group-append">
+    <span class="input-group-text" id="basic-addon2" (click)="addTodo()"><i class="fa fa-plus-square"></i></span>
+  </div>
+  <div >
+    <input style="margin-top: 5px;"  type="date" [(ngModel)]="date" (keyup.enter)="addDate(date)">
+  </div >
+
+
+
+
+
+</div>
+
+<div class="input-group mb-3" *ngFor="let item of todoFilter()" @anim>
+  <div class="input-group-prepend">
+    <div class="input-group-text">
+      <input type="checkbox" aria-label="Checkbox for following text input" [(ngModel)]="item.checked">
+    </div>
+  </div>
+  <ul class="list-group" style="width: 90%;">
+    <li class="list-group-item" [ngClass]="item.checked ? 'line' : null">
+      {{item.title}} <br> <span>DeadLine: {{item.date}} </span>
+
+      <button type="button" class="btn btn-danger pull-right" (click)="removeTodo(item.id)"><i
+          class="fa fa-trash"></i></button>
+    </li>
+  </ul>
+
+</div>
+
+
+
+<div class="form-check">
+  <input type="checkbox" class="form-check-input" (change)="checkAll()" [(ngModel)]="!remainingTodo">
+  <label class="form-check-label" for="exampleCheck1">Check All</label>
+  <div class="pull-right">{{ findremaining() }} items left</div>
+</div>
+
+
+<div class="btn-group" role="group" aria-label="Basic example" style="margin:10px 0 20px 0;">
+  <button type="button" class="btn btn-primary" [ngClass]="{'active': filter === 'all'}"
+    (click)="filter='all'">All</button>
+  <button style="margin-left: 10px;" type="button" class="btn btn-success" [ngClass]="{'active': filter === 'active'}"
+    (click)="filter='active'">Active</button>
+  <button style="margin-left: 10px;" type="button" class="btn btn-danger" [ngClass]="{'active': filter === 'completed'}"
+    (click)="filter='checked'">Completed</button>
+</div>
+
+<div *ngIf="completedTodo()">
+
+  <button type="button" class="btn btn-outline-dark" (click)="completedDelete()">Clear Completed</button>
+</div>
