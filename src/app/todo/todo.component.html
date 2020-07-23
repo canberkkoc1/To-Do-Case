@@ -4,8 +4,9 @@
 
 
 <div class="input-group" style="padding-bottom: 15px;">
-  <input style="width: 90%;" type="text" class="todo-input" placeholder="Please enter the task" [(ngModel)]="title"
-    (keyup.enter)="addTodo()">
+  <input style="width: 92%;outline: none;" type="text" class="todo-input" placeholder="Please enter the task" [(ngModel)]="title"
+    (keyup.enter)="addTodo()"
+    >
   <div class="input-group-append">
     <span class="input-group-text" id="basic-addon2" (click)="addTodo()"><i class="fa fa-plus-square"></i></span>
   </div>
@@ -27,7 +28,20 @@
   </div>
   <ul class="list-group" style="width: 90%;">
     <li class="list-group-item" [ngClass]="item.checked ? 'line' : null">
-      {{item.title}} <br> <span>DeadLine: {{item.date}} </span>
+      <div *ngIf="!item.edit; else editingItem" (dblclick)="editTodo(item)" 
+      class="todo-item-lbl">
+        <span style="font-size: 14px;">{{item.title}}</span> <br>
+      </div>
+      <ng-template #editingItem>
+        <input type="text" class="edit-item"
+          [(ngModel)]="item.title" autofocus (blur)="editFns()"
+          (keyup.enter)="editFns(item)"
+          (keyup.esc)="cancelEdit(item)"
+          style="outline: none;width: 90%;"
+        >
+      </ng-template >
+      
+      <span style="color: red;">DeadLine: </span> <span style="font-size: 14px;">{{item.date}}</span>
       
       <button type="button" class="btn btn-danger pull-right" (click)="removeTodo(item.id)"><i
         class="fa fa-trash"></i></button>

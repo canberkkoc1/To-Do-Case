@@ -27,6 +27,7 @@ export class TodoComponent implements OnInit {
   filter:string;
   remainingTodo:boolean;
   date:string;
+  bfEdit:string;
 
 
   constructor() { }
@@ -36,6 +37,7 @@ export class TodoComponent implements OnInit {
     this.filter="all";
     this.idTodo = 2;
     this.title = ' ';
+    this.bfEdit="",
     this.date=' ';
     this.todoList=[
       
@@ -54,6 +56,7 @@ export class TodoComponent implements OnInit {
       title:this.title,
       checked:false,
       date:this.date,
+      edit:false,
 
     })
 
@@ -74,8 +77,22 @@ export class TodoComponent implements OnInit {
     this.todoList =this.todoList.filter(item => !item.checked);
   }
  
+editTodo(i:Todo):void{
+  this.bfEdit = i.title;
+  i.edit=true;
+}
 
-  // 
+editFns(i:Todo):void{
+  if(i.title.trim().length === 0){
+    i.title=this.bfEdit;
+  }
+  i.edit = false;
+}
+
+cancelEdit(i:Todo):void{
+  i.title = this.bfEdit;
+  i.edit=false;
+}  
   todoremaining():boolean{
     return this.findremaining() !==0;
   }

@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-    
+body{    
     background:linear-gradient(90deg,rgb(204, 255, 255),rgb(0, 128, 128));
-    
+    font-family: 'Red Rose', cursive;
+    font-size: 16px;
 }
 
 

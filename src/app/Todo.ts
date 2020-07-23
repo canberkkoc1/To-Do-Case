@@ -3,5 +3,6 @@ export interface Todo {
     title: string,
     checked: boolean,
     date:string,
+    edit:boolean;
 
 }
